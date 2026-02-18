@@ -99,7 +99,7 @@ class BLESerialClass : public BLEServerCallbacks, public BLECharacteristicCallba
 
     void onWrite(BLECharacteristic* ch) override {
         if (!_data_cb) return;
-        std::string val = ch->getValue();
+        std::string val = std::string(ch->getValue().c_str());
         _data_cb((uint8_t*)val.data(), val.size());
     }
 };
